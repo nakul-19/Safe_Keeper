@@ -9,8 +9,6 @@ import java.io.Serializable
 data class User(
     @ColumnInfo(name = "name") var name : String,
     @ColumnInfo(name = "email") var email : String,
-    @ColumnInfo(name = "mobile") var mobile : String,
-    @ColumnInfo(name = "address") var address : String,
     @ColumnInfo(name = "password") var password : String,
     @ColumnInfo(name = "loggedIn") var loggedIn : Int = 0,
 ) : Serializable {

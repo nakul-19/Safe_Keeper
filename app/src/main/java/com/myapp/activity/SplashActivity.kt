@@ -32,9 +32,7 @@ class SplashActivity : AppCompatActivity() {
                 } else {
                     val intent = Intent(applicationContext, MainActivity::class.java)
                     intent.putExtra("Name", user!!.name)
-                    intent.putExtra("Address", user!!.address)
                     intent.putExtra("Email", user!!.email)
-                    intent.putExtra("Mobile", user!!.mobile)
                     startActivity(intent)
                     overridePendingTransition(R.anim.slide_in, R.anim.slide_out)
                 }

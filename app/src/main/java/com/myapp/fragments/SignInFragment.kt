@@ -56,7 +56,7 @@ class SignInFragment : Fragment() {
             Handler(Looper.getMainLooper()).postDelayed({
                 if (user == null) {
                     loading.visibility = View.GONE
-                    email.error = "Email id doesn't exist!"
+                    email.error = "Username doesn't exist!"
 //                    return@setOnClickListener
                 } else {
                     loading.visibility = View.GONE
@@ -65,7 +65,7 @@ class SignInFragment : Fragment() {
                     } else
                         launchMainActivity(user!!)
                 }
-            }, 750)
+            }, 500)
         }
         signup.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
@@ -78,9 +78,7 @@ class SignInFragment : Fragment() {
         Toast.makeText(requireContext(), "Welcome ${user.name}!", Toast.LENGTH_SHORT).show()
         val intent = Intent(requireActivity(), MainActivity::class.java)
         intent.putExtra("Name", user.name)
-        intent.putExtra("Address", user.address)
         intent.putExtra("Email", user.email)
-        intent.putExtra("Mobile", user.mobile)
         startActivity(intent)
         requireActivity().overridePendingTransition(R.anim.slide_in,R.anim.slide_out)
         requireActivity().finish()
@@ -88,8 +86,8 @@ class SignInFragment : Fragment() {
 
     private fun check(): Boolean {
         var isValid = true
-        if (!Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).find()) {
-            email.error = "Invalid Email!"
+        if (email.text.isBlank()) {
+            email.error = "Invalid Username!"
             isValid = false
         }
         if (pswrd.length() < 6) {

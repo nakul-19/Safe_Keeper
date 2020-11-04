@@ -20,9 +20,7 @@ import kotlinx.coroutines.launch
 class SignUpFragment : BaseFragment() {
 
     lateinit var name: EditText
-    lateinit var address: EditText
     lateinit var email: EditText
-    lateinit var mobile: EditText
     lateinit var pswrd: EditText
     lateinit var cnfPswrd: EditText
     lateinit var signup: TextView
@@ -59,8 +57,6 @@ class SignUpFragment : BaseFragment() {
                             User(
                                 name.text.toString(),
                                 email.text.toString(),
-                                mobile.text.toString(),
-                                address.text.toString(),
                                 pswrd.text.toString()
                             )
                         )
@@ -70,7 +66,7 @@ class SignUpFragment : BaseFragment() {
                 launchMainActivity()
                 return@setOnClickListener
             }
-            email.error = "Email id already in use!"
+            email.error = "Username already in use!"
         }
 
         login.setOnClickListener {
@@ -84,9 +80,7 @@ class SignUpFragment : BaseFragment() {
         Toast.makeText(requireContext(), "Welcome ${name.text}!", Toast.LENGTH_SHORT).show()
         val intent = Intent(requireActivity(), MainActivity::class.java)
         intent.putExtra("Name", name.text.toString())
-        intent.putExtra("Address", address.text.toString())
         intent.putExtra("Email", email.text.toString())
-        intent.putExtra("Mobile", mobile.text.toString())
         startActivity(intent)
         requireActivity().overridePendingTransition(R.anim.slide_in, R.anim.slide_out)
         requireActivity().finish()
@@ -99,16 +93,8 @@ class SignUpFragment : BaseFragment() {
             name.error = "Name can't be blank!"
             isValid = false
         }
-        if (address.text.isBlank()) {
-            address.error = "Address can't be blank!"
-            isValid = false
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).find()) {
-            email.error = "Invalid Email!"
-            isValid = false
-        }
-        if (!Patterns.PHONE.matcher(mobile.text.toString()).find()) {
-            mobile.error = "Invalid Mobile!"
+        if (email.text.isBlank()) {
+            email.error = "Username can't be blank!"
             isValid = false
         }
         if (pswrd.length() < 6) {
@@ -126,9 +112,7 @@ class SignUpFragment : BaseFragment() {
 
     private fun init(view: View) {
         name = view.findViewById(R.id.etName)
-        address = view.findViewById(R.id.etAddress)
         email = view.findViewById(R.id.etEmail)
-        mobile = view.findViewById(R.id.etMobile)
         pswrd = view.findViewById(R.id.etPassword)
         cnfPswrd = view.findViewById(R.id.etCnfPassword)
         signup = view.findViewById(R.id.tvSignUpButton)
