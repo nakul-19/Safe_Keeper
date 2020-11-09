@@ -96,7 +96,7 @@
         android:layout_marginStart="22dp"
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@id/tvSignUpButton">
+        app:layout_constraintBottom_toTopOf="@id/avatarRecycler">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etCnfPassword"
@@ -111,6 +111,14 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/avatarRecycler"
+        android:scrollbars="horizontal"
+        android:layout_width="match_parent"
+        android:paddingBottom="7dp"
+        android:layout_margin="17dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/tvSignUpButton" />
 
     <TextView
         android:id="@+id/tvSignUpButton"

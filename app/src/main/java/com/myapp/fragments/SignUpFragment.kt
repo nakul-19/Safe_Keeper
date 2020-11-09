@@ -6,12 +6,12 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.myapp.R
 import com.myapp.activity.MainActivity
+import com.myapp.adapters.AvatarAdapter
 import com.myapp.database.User
 import com.myapp.database.UserDatabase
 import kotlinx.coroutines.MainScope
@@ -25,7 +25,10 @@ class SignUpFragment : BaseFragment() {
     lateinit var cnfPswrd: EditText
     lateinit var signup: TextView
     lateinit var login: TextView
+    lateinit var adapter: AvatarAdapter
     lateinit var loading: ProgressBar
+    val list: ArrayList<Int> = ArrayList()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +36,14 @@ class SignUpFragment : BaseFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
+        val recycler = view.findViewById<RecyclerView>(R.id.avatarRecycler)
+        recycler.layoutManager= LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        list.add(R.drawable.avatar1)
+        list.add(R.drawable.avatar2)
+        list.add(R.drawable.avatar3)
+        list.add(R.drawable.avatar4)
+        adapter= AvatarAdapter(list)
+        recycler.adapter=adapter
         init(view)
         signup.setOnClickListener {
 
@@ -57,7 +68,8 @@ class SignUpFragment : BaseFragment() {
                             User(
                                 name.text.toString(),
                                 email.text.toString(),
-                                pswrd.text.toString()
+                                pswrd.text.toString(),
+                                adapter.getSelected()
                             )
                         )
                     }
