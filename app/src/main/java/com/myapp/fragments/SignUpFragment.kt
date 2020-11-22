@@ -59,11 +59,7 @@ class SignUpFragment : BaseFragment() {
             MainScope().launch {
                 context?.let {
                     user = UserDatabase(it).getUserDao().getUser(email.text.toString())
-                }
-            }
-            if (user == null) {
-                MainScope().launch {
-                    context?.let {
+                    if (user == null) {
                         UserDatabase(it).getUserDao().addUser(
                             User(
                                 name.text.toString(),
@@ -72,13 +68,14 @@ class SignUpFragment : BaseFragment() {
                                 adapter.getSelected()
                             )
                         )
-                    }
+                        loading.visibility = View.GONE
+                        launchMainActivity()
+                    } else
+                        email.error = "Username already in use!"
+                    loading.visibility = View.GONE
                 }
-                loading.visibility = View.GONE
-                launchMainActivity()
-                return@setOnClickListener
             }
-            email.error = "Username already in use!"
+            return@setOnClickListener
         }
 
         login.setOnClickListener {
@@ -89,10 +86,11 @@ class SignUpFragment : BaseFragment() {
     }
 
     private fun launchMainActivity() {
-        Toast.makeText(requireContext(), "Welcome ${name.text}!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Welcome ${email.text}!", Toast.LENGTH_SHORT).show()
         val intent = Intent(requireActivity(), MainActivity::class.java)
         intent.putExtra("Name", name.text.toString())
         intent.putExtra("Email", email.text.toString())
+        intent.putExtra("Avatar", adapter.getSelected())
         startActivity(intent)
         requireActivity().overridePendingTransition(R.anim.slide_in, R.anim.slide_out)
         requireActivity().finish()

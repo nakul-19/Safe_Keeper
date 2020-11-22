@@ -17,5 +17,5 @@ interface UserDao {
     suspend fun getLoggedInUser(): User
 
     @Update
-    suspend fun logout(user: User)
+    suspend fun logUser(user: User)
 }
