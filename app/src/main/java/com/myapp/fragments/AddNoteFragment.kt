@@ -12,6 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.myapp.R
 import com.myapp.database.Note
 import com.myapp.database.NoteDatabase
+import com.myapp.util.hideKeyboard
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
@@ -57,14 +58,17 @@ class AddNoteFragment : BaseFragment() {
         }
 
         b_cancel.setOnClickListener {
-            if (note==null)
-            requireActivity().onBackPressed()
+            if (note==null){
+                hideKeyboard()
+                requireActivity().onBackPressed()
+            }
             else{
                 val frag = ViewNoteFragment()
                 val arg=Bundle()
                 arg.putInt("Uid",uid)
                 arg.putSerializable("Note",note!!)
                 frag.arguments=arg
+                hideKeyboard()
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.main_frame,frag).commit()
             }
@@ -83,6 +87,7 @@ class AddNoteFragment : BaseFragment() {
                         NoteDatabase(it).getNoteDao().addNote(Note(uid, title, body))
                         loading.visibility = View.VISIBLE
                         Toast.makeText(requireContext(), "Note Saved!", Toast.LENGTH_SHORT).show()
+                        hideKeyboard()
                         requireActivity().onBackPressed()
                     }
                     else {
@@ -96,6 +101,7 @@ class AddNoteFragment : BaseFragment() {
                         arg.putSerializable("Note",note!!)
                         frag.arguments=arg
                         Toast.makeText(requireContext(), "Note Saved!", Toast.LENGTH_SHORT).show()
+                        hideKeyboard()
                         requireActivity().supportFragmentManager.beginTransaction()
                             .replace(R.id.main_frame,frag).commit()
                     }

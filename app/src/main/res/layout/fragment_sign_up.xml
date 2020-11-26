@@ -11,7 +11,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="10dp"
         android:background="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/etName"
+        app:layout_constraintBottom_toTopOf="@+id/etName_layout"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -40,34 +40,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvSignUp" />
 
-    <EditText
-        android:id="@+id/etEmail"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etEmail_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginEnd="22dp"
-        android:hint="Username"
-        android:imeOptions="actionNext"
-        android:padding="14dp"
-        android:singleLine="true"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/etPassword_layout" />
+        app:layout_constraintBottom_toTopOf="@id/etPassword_layout">
 
-    <EditText
-        android:id="@+id/etName"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:imeOptions="actionNext"
+            android:padding="14dp"
+            android:singleLine="true"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etName_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="10dp"
-        android:hint="Name"
-        android:imeOptions="actionNext"
-        android:inputType="textPersonName"
-        android:padding="14dp"
-        android:singleLine="true"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/etEmail" />
+        app:layout_constraintBottom_toTopOf="@id/etEmail_layout">
 
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:padding="14dp"
+            android:singleLine="true"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etPassword_layout"

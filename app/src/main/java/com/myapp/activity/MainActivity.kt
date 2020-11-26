@@ -16,6 +16,7 @@ import com.myapp.database.UserDatabase
 import com.myapp.fragments.AddNoteFragment
 import com.myapp.fragments.HomeFragment
 import com.myapp.fragments.ViewNoteFragment
+import com.myapp.util.hideKeyboard
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        hideKeyboard()
         val drawer = findViewById<DrawerLayout>(R.id.drawerLayout)
         toggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
         drawer.addDrawerListener(toggle)
@@ -95,8 +96,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(toggle.onOptionsItemSelected(item)) {
+            hideKeyboard()
+
             return true
         }
+        hideKeyboard()
         return super.onOptionsItemSelected(item)
     }
 

@@ -16,6 +16,7 @@ import com.myapp.R
 import com.myapp.adapters.NoteAdapter
 import com.myapp.database.Note
 import com.myapp.database.NoteDatabase
+import com.myapp.util.hideKeyboard
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -40,6 +41,7 @@ class HomeFragment : BaseFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+        hideKeyboard()
         val recycler = view.findViewById<RecyclerView>(R.id.noteRecyclerView)
         recycler.layoutManager=LinearLayoutManager(requireContext())
         adapter= NoteAdapter(list,id!!)
@@ -50,6 +52,7 @@ class HomeFragment : BaseFragment() {
             val arg = Bundle()
             arg.putInt("Uid",id!!)
             frag.arguments = arg
+            hideKeyboard()
             requireActivity().supportFragmentManager.beginTransaction()
                 .setCustomAnimations(
                     R.anim.fragment_open_enter,

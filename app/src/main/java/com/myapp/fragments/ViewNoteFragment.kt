@@ -10,6 +10,7 @@ import android.widget.EditText
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.myapp.R
 import com.myapp.database.Note
+import com.myapp.util.hideKeyboard
 
 class ViewNoteFragment : Fragment() {
     // TODO: Rename and change types of parameters
@@ -32,6 +33,7 @@ class ViewNoteFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_view_note, container, false)
+        hideKeyboard()
         init(view)
         return view
     }
