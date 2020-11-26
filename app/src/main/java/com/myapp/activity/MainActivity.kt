@@ -5,26 +5,29 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.myapp.R
 import com.myapp.database.User
 import com.myapp.database.UserDatabase
+import com.myapp.fragments.AddNoteFragment
 import com.myapp.fragments.HomeFragment
+import com.myapp.fragments.ViewNoteFragment
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var user: User
+    var uid: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,19 +41,23 @@ class MainActivity : AppCompatActivity() {
         toggle.syncState()
         val arg = Bundle()
         val name = intent.getStringExtra("Name")
-        arg.putString("Name", name)
+        uid = intent.getIntExtra("Uid", 1)
+        arg.putInt("Uid", uid)
         val email = intent.getStringExtra("Email")
-        arg.putString("Email", email)
-        val av = intent.getIntExtra("Avatar",R.drawable.avatar1)
+        val av = intent.getIntExtra("Avatar", R.drawable.avatar1)
         val nHeader = findViewById<NavigationView>(R.id.nav_view).getHeaderView(0)
-        setHeader(nHeader,name!!,email!!,av)
-//        val v:View = n.getHeaderView(0)
-//        val tv_Name:TextView = v.findViewById(R.id.lName)
-//        tv_Name.text=name
+        setHeader(nHeader, name!!, email!!, av)
         login(email)
         val frag = HomeFragment()
-        frag.arguments = arg
-        supportFragmentManager.beginTransaction().add(R.id.main_frame, frag).commit()
+        frag.arguments=arg
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(
+                R.anim.fragment_open_enter,
+                R.anim.fragment_close_exit,
+                R.anim.fragment_fade_enter,
+                R.anim.fragment_fade_exit
+            )
+            .replace(R.id.main_frame, frag).commit()
     }
 
     private fun setHeader(view: View, name: String, email: String, av: Int) {
@@ -94,9 +101,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        val f = supportFragmentManager.findFragmentById(R.id.main_frame)
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
-        } else
+            return
+        }
+        if(f is AddNoteFragment || f is ViewNoteFragment){
+            val frag = HomeFragment()
+            val arg = Bundle()
+            arg.putInt("Uid", uid)
+            frag.arguments = arg
+            supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.fragment_open_enter,
+                    R.anim.fragment_close_exit,
+                    R.anim.fragment_fade_enter,
+                    R.anim.fragment_fade_exit
+                ).replace(R.id.main_frame,frag).commit()
+            return
+        }
             super.onBackPressed()
     }
 

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3B40C4FF"
+    tools:context=".fragments.ViewNoteFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/titleBorder"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/colorPrimary" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginBottom="-2dp"
+                android:scrollbars="none"
+                android:background="@android:color/white"
+                android:layout_alignStart="@id/titleBorder"
+                android:layout_alignTop="@id/titleBorder"
+                android:layout_alignEnd="@id/titleBorder"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="4dp">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/vnHeading"
+                android:layout_width="fill_parent"
+                android:layout_height="56dp"
+                android:background="@android:color/white"
+                android:editable="false"
+                android:focusable="false"
+                android:gravity="center"
+                android:hint="Heading"
+                android:paddingHorizontal="8dp"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="#A140C4FF"
+                android:textSize="26sp" />
+            </HorizontalScrollView>
+            <TextView
+                android:id="@+id/bodyBorder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/titleBorder"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="48dp"
+                android:background="@color/colorPrimary" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/vnContent"
+                android:clickable="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignStart="@id/bodyBorder"
+                android:layout_alignTop="@id/bodyBorder"
+                android:layout_alignEnd="@id/bodyBorder"
+                android:layout_alignBottom="@id/bodyBorder"
+                android:layout_margin="4dp"
+                android:background="@android:color/white"
+                android:editable="false"
+                android:focusable="false"
+                android:gravity="start|top"
+                android:hint="Enter content"
+                android:inputType="none"
+                android:padding="8dp"
+                android:textColor="#605F5F"
+                android:textColorHint="#A140C4FF"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bEditShadow"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:clickable="true"
+            android:elevation="16dp"
+            android:foregroundGravity="center"
+            android:tint="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bEdit"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#BEFFFFFF"
+            android:clickable="true"
+            android:contentDescription="Add note"
+            android:foregroundGravity="center"
+            android:src="@drawable/ic_edit"
+            android:tint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

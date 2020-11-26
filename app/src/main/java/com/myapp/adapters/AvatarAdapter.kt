@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.myapp.R
-import com.myapp.database.User
 import kotlinx.android.synthetic.main.avatar_layout.view.*
 
 class AvatarAdapter(val list: ArrayList<Int>) : RecyclerView.Adapter<AvatarAdapter.AvatarViewHolder>() {

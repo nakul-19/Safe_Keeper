@@ -79,6 +79,7 @@ class SignInFragment : Fragment() {
         val intent = Intent(requireActivity(), MainActivity::class.java)
         intent.putExtra("Name", user.name)
         intent.putExtra("Email", user.email)
+        intent.putExtra("Uid",user.userId)
         startActivity(intent)
         requireActivity().overridePendingTransition(R.anim.slide_in,R.anim.slide_out)
         requireActivity().finish()

@@ -34,11 +34,12 @@ class SplashActivity : AppCompatActivity() {
                         intent.putExtra("Name", user!!.name)
                         intent.putExtra("Email", user!!.email)
                         intent.putExtra("Avatar", user!!.avatar)
+                        intent.putExtra("Uid",user!!.userId)
                         startActivity(intent)
                         overridePendingTransition(R.anim.slide_in, R.anim.slide_out)
                     }
+                    finish()
                 }
-                finish()
             },
             1000
         )
