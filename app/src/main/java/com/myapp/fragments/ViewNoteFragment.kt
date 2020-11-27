@@ -17,10 +17,12 @@ class ViewNoteFragment : Fragment() {
     private var heading: String? = null
     private var body: String? = null
     private var uid: Int = 0
+    var note: Note?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            note = (it.getSerializable("Note") as Note?)
             heading = (it.getSerializable("Note") as Note).heading
             body = (it.getSerializable("Note") as Note).body
             uid = it.getInt("Uid")
@@ -46,9 +48,8 @@ class ViewNoteFragment : Fragment() {
         vnBody.setText(body)
         val b_edit = view.findViewById<FloatingActionButton>(R.id.bEdit)
         b_edit.setOnClickListener {
-            val note=Note(uid,heading!!,body!!)
             val arg = Bundle()
-            arg.putSerializable("Note",note)
+            arg.putSerializable("Note",note!!)
             val frag = AddNoteFragment()
             frag.arguments=arg
             requireActivity().supportFragmentManager.beginTransaction()
