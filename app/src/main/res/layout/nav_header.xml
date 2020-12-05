@@ -10,8 +10,9 @@
     app:layout_constraintTop_toTopOf="parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="70dp"
+    android:layout_marginVertical="60dp"
     android:layout_marginHorizontal="10dp"
+    app:cardElevation="4dp"
     app:cardCornerRadius="40dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,6 +23,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/lAvatar"
             android:layout_width="100dp"
+            android:elevation="4dp"
             android:layout_height="100dp"
             android:layout_marginTop="60dp"
             android:src="@drawable/avatar1"
@@ -34,10 +36,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:fontFamily="serif"
+            android:fontFamily="@font/open_sans"
             android:text="LoggedInName"
             android:textColor="@android:color/white"
-            android:textSize="27sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,11 +51,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
-            android:fontFamily="serif"
+            android:fontFamily="@font/open_sans"
             android:text="LoggedInUserName"
             android:textColor="@android:color/white"
-            android:textSize="17sp"
-            android:textStyle="italic"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,9 +68,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Logout"
-        android:fontFamily="serif"
+        android:fontFamily="@font/open_sans"
+        android:elevation="4dp"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:layout_marginBottom="8dp"
         android:onClick="logout"
         android:textColor="@android:color/white"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimaryLight"/>
 
 </LinearLayout>

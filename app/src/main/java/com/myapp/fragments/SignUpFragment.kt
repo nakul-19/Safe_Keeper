@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.myapp.R
@@ -22,9 +23,9 @@ class SignUpFragment : BaseFragment() {
     lateinit var name: EditText
     lateinit var email: EditText
     lateinit var pswrd: EditText
-    lateinit var cnfPswrd: EditText
     lateinit var signup: TextView
     lateinit var login: TextView
+    lateinit var login2: TextView
     lateinit var adapter: AvatarAdapter
     lateinit var loading: ProgressBar
     val list: ArrayList<Int> = ArrayList()
@@ -86,6 +87,18 @@ class SignUpFragment : BaseFragment() {
         login.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.login_frame, SignInFragment()).commit()
+            requireActivity().findViewById<TextView>(R.id.signUp).setTextColor(resources.getColor(R.color.colorInactive))
+            requireActivity().findViewById<TextView>(R.id.signIn).setTextColor(resources.getColor(R.color.white))
+            val ml = requireActivity().findViewById<MotionLayout>(R.id.motionLayout)
+            ml.transitionToStart()
+        }
+        login2.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.login_frame, SignInFragment()).commit()
+            requireActivity().findViewById<TextView>(R.id.signUp).setTextColor(resources.getColor(R.color.colorInactive))
+            requireActivity().findViewById<TextView>(R.id.signIn).setTextColor(resources.getColor(R.color.white))
+            val ml = requireActivity().findViewById<MotionLayout>(R.id.motionLayout)
+            ml.transitionToStart()
         }
         return view
     }
@@ -116,11 +129,6 @@ class SignUpFragment : BaseFragment() {
         if (pswrd.length() < 6) {
             pswrd.error = "Password should have at least 6 characters!"
             isValid = false
-        } else {
-            if (pswrd.text.toString() != cnfPswrd.text.toString()) {
-                cnfPswrd.error = "Passwords don't match!"
-                isValid = false
-            }
         }
 
         return isValid
@@ -130,10 +138,10 @@ class SignUpFragment : BaseFragment() {
         name = view.findViewById(R.id.etName)
         email = view.findViewById(R.id.etEmail)
         pswrd = view.findViewById(R.id.etPassword)
-        cnfPswrd = view.findViewById(R.id.etCnfPassword)
         signup = view.findViewById(R.id.tvSignUpButton)
-        login = view.findViewById(R.id.tvLogin)
-        loading = view.findViewById(R.id.loginLoading)
+        loading = (requireActivity()).findViewById(R.id.lLoading)
+        login = view.findViewById(R.id.tvSignInButton)
+        login2 = requireActivity().findViewById(R.id.signIn)
     }
 
 }

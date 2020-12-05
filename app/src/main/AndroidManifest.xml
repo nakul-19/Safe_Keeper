@@ -5,12 +5,14 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:windowSoftInputMode="adjustPan|adjustResize"
+        android:windowSoftInputMode="adjustPan"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.LoginActivity"></activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -23,6 +25,10 @@
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/AppTheme" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

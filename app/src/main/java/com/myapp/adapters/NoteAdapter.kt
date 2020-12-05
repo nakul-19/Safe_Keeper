@@ -27,8 +27,8 @@ class NoteAdapter(var list: ArrayList<Note>, val uid: Int) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         var heading=list[position].heading
-        if(heading.length>16){
-            heading=heading.substring(0,15)+"..."
+        if(heading.length>24){
+            heading=heading.substring(0,23)+"..."
         }
         holder.view.itemHeading.text=heading
 

@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import com.myapp.R
 import com.myapp.activity.MainActivity
@@ -25,6 +26,7 @@ class SignInFragment : Fragment() {
     lateinit var email: EditText
     lateinit var pswrd: EditText
     lateinit var signup: TextView
+    lateinit var signup2: TextView
     lateinit var login: TextView
     lateinit var loading: ProgressBar
 
@@ -70,6 +72,19 @@ class SignInFragment : Fragment() {
         signup.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.login_frame, SignUpFragment()).commit()
+            requireActivity().findViewById<TextView>(R.id.signIn).setTextColor(resources.getColor(R.color.colorInactive))
+            requireActivity().findViewById<TextView>(R.id.signUp).setTextColor(resources.getColor(R.color.white))
+            val ml = requireActivity().findViewById<MotionLayout>(R.id.motionLayout)
+            ml.transitionToEnd()
+        }
+
+        signup2.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.login_frame, SignUpFragment()).commit()
+            requireActivity().findViewById<TextView>(R.id.signIn).setTextColor(resources.getColor(R.color.colorInactive))
+            requireActivity().findViewById<TextView>(R.id.signUp).setTextColor(resources.getColor(R.color.white))
+            val ml = requireActivity().findViewById<MotionLayout>(R.id.motionLayout)
+            ml.transitionToEnd()
         }
         return view
     }
@@ -101,8 +116,9 @@ class SignInFragment : Fragment() {
     private fun init(view: View) {
         email = view.findViewById(R.id.etEmailLogin)
         pswrd = view.findViewById(R.id.etPasswordLogin)
-        loading = view.findViewById(R.id.signInLoading)
-        signup = view.findViewById(R.id.tvSignUp)
+        loading = requireActivity().findViewById(R.id.lLoading)
+        signup = view.findViewById(R.id.tvSignUpButton)
+        signup2 = requireActivity().findViewById(R.id.signUp)
         login = view.findViewById(R.id.tvLoginButton)
     }
 }

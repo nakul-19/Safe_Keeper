@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3B40C4FF"
+    android:background="@color/white"
     tools:context=".fragments.ViewNoteFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,80 +18,84 @@
             <TextView
                 android:id="@+id/titleBorder"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="56dp"
                 android:layout_marginHorizontal="4dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="4dp"
-                android:background="@color/colorPrimary" />
+                android:background="@color/white" />
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginBottom="-2dp"
-                android:scrollbars="none"
-                android:background="@android:color/white"
+                android:layout_height="52dp"
                 android:layout_alignStart="@id/titleBorder"
                 android:layout_alignTop="@id/titleBorder"
                 android:layout_alignEnd="@id/titleBorder"
-                android:layout_marginHorizontal="4dp"
-                android:layout_marginTop="4dp">
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/white"
+                android:scrollbars="none">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/vnHeading"
-                android:layout_width="fill_parent"
-                android:layout_height="56dp"
-                android:background="@android:color/white"
-                android:editable="false"
-                android:focusable="false"
-                android:gravity="center"
-                android:hint="Heading"
-                android:paddingHorizontal="8dp"
-                android:singleLine="true"
-                android:textColor="@color/colorPrimary"
-                android:textColorHint="#A140C4FF"
-                android:textSize="26sp" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/vnHeading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/white"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="8dp"
+                    android:singleLine="true"
+                    android:text="Heading"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
             </HorizontalScrollView>
+
             <TextView
                 android:id="@+id/bodyBorder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/titleBorder"
                 android:layout_marginHorizontal="4dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="48dp"
                 android:background="@color/colorPrimary" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/vnContent"
-                android:clickable="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignStart="@id/bodyBorder"
-                android:layout_alignTop="@id/bodyBorder"
-                android:layout_alignEnd="@id/bodyBorder"
-                android:layout_alignBottom="@id/bodyBorder"
-                android:layout_margin="4dp"
-                android:background="@android:color/white"
+                android:layout_alignStart="@+id/bodyBorder"
+                android:layout_alignTop="@+id/bodyBorder"
+                android:layout_alignEnd="@+id/bodyBorder"
+                android:layout_alignBottom="@+id/bodyBorder"
+                android:layout_margin="2dp"
+                android:background="@color/white"
+                android:clickable="false"
                 android:editable="false"
                 android:focusable="false"
+                android:fontFamily="@font/open_sans"
                 android:gravity="start|top"
-                android:hint="Enter content"
                 android:inputType="none"
                 android:padding="8dp"
-                android:textColor="#605F5F"
-                android:textColorHint="#A140C4FF"
-                android:textSize="20sp" />
+                android:text="content"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
         </RelativeLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/bEditShadow"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="12dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="14dp"
             android:backgroundTint="@color/colorPrimary"
             android:clickable="true"
-            android:elevation="16dp"
+            android:elevation="8dp"
             android:foregroundGravity="center"
             android:tint="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -103,7 +107,7 @@
             android:layout_height="56dp"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="#BEFFFFFF"
+            android:backgroundTint="@color/white"
             android:clickable="true"
             android:contentDescription="Add note"
             android:foregroundGravity="center"

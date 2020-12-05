@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -36,7 +37,13 @@ class MainActivity : AppCompatActivity() {
         hideKeyboard()
         val drawer = findViewById<DrawerLayout>(R.id.drawerLayout)
         toggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
+
+        this.supportActionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM;
+        supportActionBar!!.setDisplayShowCustomEnabled(true);
+        supportActionBar!!.setCustomView(R.layout.custom_action_bar);
+
         drawer.addDrawerListener(toggle)
+        supportActionBar!!.setCustomView(R.layout.custom_action_bar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeButtonEnabled(true)
         toggle.syncState()
