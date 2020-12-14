@@ -1,7 +1,7 @@
 
 # Safe Keeper 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/57036954/100460901-faeab400-30ed-11eb-8221-85b8ded864f1.png" width="700">
+<img src="https://user-images.githubusercontent.com/57036954/102107588-e3cef480-3e57-11eb-912a-47520861f325.png" width="700">
 
 #### This app allows multiple users to login and save their notes with security. It uses offline authentication to verify the users.
 
@@ -14,7 +14,7 @@
 ## 📷 Screen Shots
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/57036954/100461480-dcd18380-30ee-11eb-9a60-8c5fee9c9d6a.png">
+<img src="https://user-images.githubusercontent.com/57036954/102107328-a66a6700-3e57-11eb-8269-543d101cb95d.png">
 
 
 ## If you liked the project don't forget to star 🌟 and fork 🍽 the project.
