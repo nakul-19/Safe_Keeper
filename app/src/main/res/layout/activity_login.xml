@@ -2,8 +2,8 @@
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/motionLayout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/SplashTheme"
     app:layoutDescription="@xml/activity_login_scene"
@@ -25,15 +25,34 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <LinearLayout
+        android:orientation="vertical"
         android:id="@+id/appCompatImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/safe_keeper_logo_white"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:src="@drawable/safe_keeper_logo_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:layout_marginTop="20dp"
+            android:textSize="30sp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#F5FFFFFF"
+            android:textStyle="bold"
+            android:fontFamily="@font/open_sans"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/signUp"
@@ -42,10 +61,10 @@
         android:layout_marginEnd="80dp"
         android:layout_marginBottom="12dp"
         android:fontFamily="@font/open_sans"
-        android:textStyle="bold"
         android:text="Sign Up"
         android:textColor="@color/colorInactive"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -57,9 +76,9 @@
         android:layout_marginBottom="12dp"
         android:fontFamily="@font/open_sans"
         android:text="Sign In"
-        android:textStyle="bold"
         android:textColor="@android:color/white"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent" />
 

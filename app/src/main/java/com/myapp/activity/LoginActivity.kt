@@ -1,12 +1,15 @@
 package com.myapp.activity
 
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.myapp.R
 import com.myapp.fragments.SignInFragment
 import com.myapp.fragments.SignUpFragment
+import com.myapp.util.hideKeyboard
 
 class LoginActivity : AppCompatActivity() {
 
@@ -29,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
         sign_up.setOnClickListener {
             gotoSignUp()
         }
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
     }
 
     fun gotoSignUp() {
@@ -42,5 +46,16 @@ class LoginActivity : AppCompatActivity() {
         ml.transitionToStart()
         supportFragmentManager.beginTransaction().replace(R.id.login_frame, SignInFragment())
             .commit()
+    }
+
+    override fun onPause() {
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+        super.onPause()
+    }
+
+    override fun onRestart() {
+        hideKeyboard()
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+        super.onRestart()
     }
 }

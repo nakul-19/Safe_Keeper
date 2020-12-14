@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -132,6 +133,18 @@ class MainActivity : AppCompatActivity() {
             return
         }
             super.onBackPressed()
+    }
+
+
+    override fun onPause() {
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+        super.onPause()
+    }
+
+    override fun onRestart() {
+        hideKeyboard()
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+        super.onRestart()
     }
 
 }

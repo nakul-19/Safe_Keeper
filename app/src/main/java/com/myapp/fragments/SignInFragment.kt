@@ -28,11 +28,9 @@ class SignInFragment : Fragment() {
     lateinit var signup: TextView
     lateinit var signup2: TextView
     lateinit var login: TextView
+    lateinit var signin: TextView
     lateinit var loading: ProgressBar
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,6 +67,11 @@ class SignInFragment : Fragment() {
                 }
             }, 500)
         }
+
+        signin.setOnClickListener {
+            return@setOnClickListener
+        }
+
         signup.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.login_frame, SignUpFragment()).commit()
@@ -79,6 +82,8 @@ class SignInFragment : Fragment() {
         }
 
         signup2.setOnClickListener {
+            if (activity==null)
+                return@setOnClickListener
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.login_frame, SignUpFragment()).commit()
             requireActivity().findViewById<TextView>(R.id.signIn).setTextColor(resources.getColor(R.color.colorInactive))
@@ -95,6 +100,7 @@ class SignInFragment : Fragment() {
         intent.putExtra("Name", user.name)
         intent.putExtra("Email", user.email)
         intent.putExtra("Uid",user.userId)
+        intent.putExtra("Avatar",user.avatar)
         startActivity(intent)
         requireActivity().overridePendingTransition(R.anim.slide_in,R.anim.slide_out)
         requireActivity().finish()
@@ -119,6 +125,7 @@ class SignInFragment : Fragment() {
         loading = requireActivity().findViewById(R.id.lLoading)
         signup = view.findViewById(R.id.tvSignUpButton)
         signup2 = requireActivity().findViewById(R.id.signUp)
+        signin = requireActivity().findViewById(R.id.signIn)
         login = view.findViewById(R.id.tvLoginButton)
     }
 }

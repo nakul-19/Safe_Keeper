@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans"
                 android:hint="Password"
-                android:imeOptions="actionNext"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:padding="14dp"
                 android:singleLine="true"
