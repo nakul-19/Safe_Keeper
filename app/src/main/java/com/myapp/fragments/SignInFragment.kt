@@ -51,20 +51,23 @@ class SignInFragment : Fragment() {
             MainScope().launch {
                 context?.let {
                     user = UserDatabase(it).getUserDao().getUser(email.text.toString())
+                    if (user == null) {
+
+                        loading.visibility = View.GONE
+                        email.error = "Username doesn't exist!"
+                    } else {
+
+                        loading.visibility = View.GONE
+
+                        if (user?.password != pswrd.text.toString()) {
+                            pswrd.error = "Incorrect Password!"
+                        } else
+                            launchMainActivity(user!!)
+                    }
                 }
             }
             Handler(Looper.getMainLooper()).postDelayed({
-                if (user == null) {
-                    loading.visibility = View.GONE
-                    email.error = "Username doesn't exist!"
-//                    return@setOnClickListener
-                } else {
-                    loading.visibility = View.GONE
-                    if (user?.password != pswrd.text.toString()) {
-                        pswrd.error = "Incorrect Password!"
-                    } else
-                        launchMainActivity(user!!)
-                }
+
             }, 500)
         }
 
@@ -73,25 +76,24 @@ class SignInFragment : Fragment() {
         }
 
         signup.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.login_frame, SignUpFragment()).commit()
-            requireActivity().findViewById<TextView>(R.id.signIn).setTextColor(resources.getColor(R.color.colorInactive))
-            requireActivity().findViewById<TextView>(R.id.signUp).setTextColor(resources.getColor(R.color.white))
-            val ml = requireActivity().findViewById<MotionLayout>(R.id.motionLayout)
-            ml.transitionToEnd()
+            openSignUp()
         }
 
         signup2.setOnClickListener {
             if (activity==null)
                 return@setOnClickListener
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.login_frame, SignUpFragment()).commit()
-            requireActivity().findViewById<TextView>(R.id.signIn).setTextColor(resources.getColor(R.color.colorInactive))
-            requireActivity().findViewById<TextView>(R.id.signUp).setTextColor(resources.getColor(R.color.white))
-            val ml = requireActivity().findViewById<MotionLayout>(R.id.motionLayout)
-            ml.transitionToEnd()
+            openSignUp()
         }
         return view
+    }
+
+    private fun openSignUp() {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.login_frame, SignUpFragment()).commit()
+        requireActivity().findViewById<TextView>(R.id.signIn).setTextColor(resources.getColor(R.color.colorInactive))
+        requireActivity().findViewById<TextView>(R.id.signUp).setTextColor(resources.getColor(R.color.white))
+        val ml = requireActivity().findViewById<MotionLayout>(R.id.motionLayout)
+        ml.transitionToEnd()
     }
 
     private fun launchMainActivity(user: User) {
