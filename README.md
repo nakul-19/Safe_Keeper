@@ -3,7 +3,7 @@
 <p align="center">
 <img src="https://user-images.githubusercontent.com/57036954/102107588-e3cef480-3e57-11eb-912a-47520861f325.png" width="700">
 
-#### This app allows multiple users to login and save their notes with security. It uses offline authentication to verify the users.
+#### Safe Keeper allows multiple users to login and save their notes. It uses offline authentication to sign in and sign out the users.
 
 ## 🛠 Tech Used
 - Android
